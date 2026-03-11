@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Til Ære for en Særlig Kat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf7f2 0%, #f5f0e8 100%);
+            overflow-x: hidden;
+        }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Floating paw prints animation */
+        .paw-print {
+            position: fixed;
+            opacity: 0;
+            animation: float 15s infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Gentle fade in */
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Photo frame styling */
+        .photo-frame {
+            background: white;
+            padding: 16px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+            transform: rotate(-1deg);
+            transition: transform 0.4s ease;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.01);
+        }
+        
+        /* Candle flicker */
+        .candle {
+            animation: flicker 3s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #d4a574;
+            border-radius: 4px;
+        }
+        
+        /* Text selection color */
+        ::selection {
+            background: #e6d5c3;
+            color: #4a4036;
+        }
+    </style>
+</head>
+<body class="text-stone-700 relative min-h-screen">
+
+    <!-- Floating Paw Prints Background -->
+    <div id="paw-container"></div>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-3xl mx-auto px-6 py-16 md:py-24">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12 fade-in" style="animation-delay: 0.2s;">
+            <div class="inline-block mb-6">
+                <svg class="w-16 h-16 text-amber-600 mx-auto candle" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2ZM12 18C10.9 18 10 18.9 10 20C10 21.1 10.9 22 12 22C13.1 22 14 21.1 14 20C14 18.9 13.1 18 12 18ZM6 12C6 10.9 5.1 10 4 10C2.9 10 2 10.9 2 12C2 13.1 2.9 14 4 14C5.1 14 6 13.1 6 12ZM20 10C18.9 10 18 10.9 18 12C18 13.1 18.9 14 20 14C21.1 14 22 13.1 22 12C22 10.9 21.1 10 20 10ZM16.24 17.24L14.83 15.83C14.09 16.57 13.11 17 12 17C9.79 17 8 15.21 8 13C8 11.89 8.43 10.91 9.17 10.17L7.76 8.76C6.67 9.85 6 11.35 6 13C6 16.31 8.69 19 12 19C13.65 19 15.15 18.33 16.24 17.24ZM15.72 7.3C15.89 7.68 16 8.07 16 8.5C16 10.43 14.43 12 12.5 12C12.07 12 11.68 11.89 11.3 11.72L9.88 13.14C10.53 13.64 11.24 14 12 14C14.21 14 16 12.21 16 10C16 9.24 15.64 8.53 15.14 7.88L15.72 7.3Z"/>
+                </svg>
+            </div>
+            <h1 class="serif text-5xl md:text-6xl text-stone-800 mb-4 italic leading-tight">
+                Hvil i Fred, Charlie<br>
+                <span class="text-amber-700">Verdens mest chillern kat</span>
+            </h1>
+            <p class="text-lg text-stone-500 max-w-xl mx-auto leading-relaxed">
+                Tak for de sjove, forunderlige, dejlige minder!
+            </p>
+        </header>
+
+        <!-- Photo Section - Standing Alone -->
+        <section class="mb-16 fade-in" style="animation-delay: 0.4s;">
+            <div class="photo-frame bg-white rounded-sm">
+                <div class="bg-stone-200  flex items-center justify-center overflow-hidden relative group">
+                    <img src="/20230319_233145.jpg" 
+                         alt="Smuk kat" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300"></div>
+                </div>
+                <p class="text-center mt-4 text-sm text-stone-500 serif italic">Kolo-vibing med Alex💓</p>
+            </div>
+        </section>
+
+        <!-- Intro Text -->
+        
+
+        <!-- Interactive Memorial Section -->
+        <section class="bg-gradient-to-br from-stone-100 to-amber-50 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden fade-in" style="animation-delay: 0.6s;">
+            <div class="absolute top-0 left-0 w-full h-full opacity-30">
+                <div class="absolute top-10 left-10 w-32 h-32 bg-amber-200 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-10 right-10 w-40 h-40 bg-stone-300 rounded-full blur-3xl"></div>
+            </div>
+            
+            <div class="relative z-10">
+                <h3 class="serif text-3xl text-stone-800 mb-4">Et Lys i Mørket</h3>
+                <p class="text-stone-600 mb-8 max-w-lg mx-auto">
+                    Tænd et lys og se et minde blomstre.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="flex justify-center gap-4 mb-10">
+                    <button onclick="addFlower()" class="bg-amber-600 text-white px-6 py-3 rounded-full hover:bg-amber-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        <span>🌸</span> Læg en blomst
+                    </button>
+                    <button onclick="lightCandle()" class="border-2 border-stone-400 text-stone-600 px-6 py-3 rounded-full hover:border-amber-600 hover:text-amber-600 transition-all duration-300 hover:-translate-y-1">
+                        🕯️ Tænd et lys
+                    </button>
+                </div>
+
+                <!-- Candles Display - Just icons, no labels -->
+                <div id="candle-garden" class="flex flex-wrap justify-center gap-3 mb-8 min-h-[50px]">
+                    <div class="candle text-3xl">🕯️</div>
+                </div>
+
+                <!-- Flowers Display -->
+                <div id="flower-garden" class="flex flex-wrap justify-center gap-3 mb-10 min-h-[40px]">
+                    <!-- Flowers appear here -->
+                </div>
+
+                <!-- Single Large Memory Display -->
+                <div id="memory-display" class="mt-8 pt-8 border-t border-stone-300/50 min-h-[120px] flex items-center justify-center">
+                    <p class="text-stone-400 italic text-lg">Tænd et lys for at vække et minde...</p>
+                </div>
+                
+                <p class="text-xs text-stone-400 mt-8 italic serif">
+                    "Katte efterlader potespor på vores hjerter, og vi er aldrige mere de samme."
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-stone-400 text-sm fade-in" style="animation-delay: 0.8s;">
+            <p class="mb-2">Med evig kærlighed og taknemmelighed</p>
+            <p class="serif italic text-stone-500">2026</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Collection of specific, quirky memories
+        const memories = [
+            { text: "Kattemassage kl. 4 om morgenen", icon: "💆" },
+            { text: "Hoppede op på køkkenbordet ved fodringstid", icon: "🍽️" },
+            { text: "Smuttede væk ved første nys", icon: "🤧" },
+            { text: "Nusning med Zika på sofaen", icon: "🪟" },
+            { text: "Jagede usynlige monstre kl. 3", icon: "👻" },
+            { text: "Sad i papkassen, ignorerede dyre sengen", icon: "📦" },
+            { text: "Gav 'high five' for godbidder", icon: "✋" },
+            { text: "Hoppede op på maven og krævede mavekild", icon: "🤲" },
+            { text: "Vækkede mig med poter i ansigtet", icon: "🐾" },
+            { text: "Så fjender i spejlet", icon: "🪞" },
+            { text: "Faldt i søvn med tungen ude", icon: "😛" },
+            { text: "Fulgte med ned på fodboldbanen med Zika", icon: "🛏️" },
+            { text: "Drak vand fra vasken", icon: "🚰" },
+            { text: "Sad i skødet og purrede højt", icon: "💓" }
+        ];
+
+        // Generate floating paw prints
+        function createPawPrints() {
+            const container = document.getElementById('paw-container');
+            const paw = '🐾';
+            
+            for (let i = 0; i < 6; i++) {
+                const span = document.createElement('span');
+                span.className = 'paw-print text-2xl text-amber-800/20';
+                span.textContent = paw;
+                span.style.left = Math.random() * 100 + '%';
+                span.style.animationDelay = Math.random() * 15 + 's';
+                span.style.animationDuration = (15 + Math.random() * 10) + 's';
+                span.style.fontSize = (20 + Math.random() * 30) + 'px';
+                container.appendChild(span);
+            }
+        }
+
+        // Add flower interaction
+        function addFlower() {
+            const garden = document.getElementById('flower-garden');
+            const flowers = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🌿', '🍀'];
+            const flower = document.createElement('span');
+            flower.className = 'text-2xl animate-bounce';
+            flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.animation = 'fadeIn 0.5s ease-out, bounce 1s infinite';
+            
+            garden.appendChild(flower);
+            
+            // Trigger a random memory when adding flower (sometimes)
+            if (Math.random() > 0.7) {
+                setTimeout(() => showRandomMemory(), 300);
+            }
+            
+            // Remove oldest if too many
+            if (garden.children.length > 15) {
+                garden.removeChild(garden.firstChild);
+            }
+        }
+
+        // Light candle and show memory
+        function lightCandle() {
+            const garden = document.getElementById('candle-garden');
+            const candle = document.createElement('div');
+            candle.className = 'candle text-3xl';
+            candle.style.animation = 'fadeIn 0.5s ease-out';
+            candle.textContent = '🕯️';
+            
+            garden.appendChild(candle);
+            
+            // Always show a memory when lighting candle
+            setTimeout(() => showRandomMemory(), 400);
+            
+            // Visual feedback on button
+            const btn = event.target.closest('button');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '✨ Tændt';
+            btn.classList.add('bg-amber-100', 'border-amber-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-amber-100', 'border-amber-600');
+            }, 1500);
+        }
+
+        // Show single random memory - large and centered
+        function showRandomMemory() {
+            const display = document.getElementById('memory-display');
+            const memory = memories[Math.floor(Math.random() * memories.length)];
+            
+            // Fade out current content
+            display.style.opacity = '0';
+            
+            setTimeout(() => {
+                display.innerHTML = `
+                    <div class="text-center animate-bounce-slow">
+                        <div class="text-5xl mb-3">${memory.icon}</div>
+                        <p class="text-xl md:text-2xl text-stone-700 font-medium leading-relaxed serif">${memory.text}</p>
+                    </div>
+                `;
+                display.style.opacity = '1';
+                display.style.transition = 'opacity 0.5s ease-out';
+            }, 300);
+        }
+
+        // Initialize
+        createPawPrints();
+    </script>
+</body>
+</html>
