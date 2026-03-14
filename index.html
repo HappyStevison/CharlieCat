@@ -134,6 +134,13 @@
                         Tak for de sjove, forunderlige, dejlige minder!
                     </p>
                     
+                    <!-- Special Day Note - Shows only on March 14th -->
+                    <div id="special-day-note" class="hidden mt-6 p-4 bg-amber-100/50 border border-amber-300/50 rounded-xl">
+                        <p class="text-stone-700 text-sm md:text-base">
+                            <span class="text-amber-700 mr-2">ℹ️</span>14. marts er en særlig dag:<br>Det er Jacks fødselsdag, og dagen Ditte fik Zika 💓
+                        </p>
+                    </div>
+                    
                     <!-- Scroll indicator -->
                     <div class="mt-12 animate-bounce">
                         <svg class="w-8 h-8 text-stone-400 mx-auto md:mx-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,17 +151,65 @@
             </div>
         </header>
 
-        <!-- Photo Section - Standing Alone -->
+        <!-- Photo Carousel Section -->
         <section class="py-16 md:py-24 px-6 fade-in" style="animation-delay: 0.4s;">
             <div class="max-w-4xl mx-auto">
-                <div class="photo-frame bg-white rounded-sm">
-                    <div class="bg-stone-200 flex items-center justify-center overflow-hidden relative group">
-                        <img src="/20230319_233145.jpg" 
-                             alt="Smuk kat" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300"></div>
+                <div class="photo-frame bg-white rounded-sm relative">
+                    <!-- Carousel Container -->
+                    <div id="carousel" class="relative overflow-hidden">
+                        <!-- Slides -->
+                        <div id="carousel-track" class="flex transition-transform duration-300 ease-out">
+                            <div class="slide w-full flex-shrink-0">
+                                <div class="bg-stone-200 flex items-center justify-center aspect-[4/3] relative">
+                                    <img src="galleri/20230319_233145.jpg" 
+                                         alt="Charlie" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="slide w-full flex-shrink-0">
+                                <div class="bg-stone-200 flex items-center justify-center aspect-[4/3] relative">
+                                    <img src="galleri/CharlieChiller.jpg" 
+                                         alt="Charlie chill" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="slide w-full flex-shrink-0">
+                                <div class="bg-stone-200 flex items-center justify-center aspect-[4/3] relative">
+                                    <img src="galleri/CharlieFlot.png" 
+                                         alt="Charlie flot" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="slide w-full flex-shrink-0">
+                                <div class="bg-stone-200 flex items-center justify-center aspect-[4/3] relative">
+                                    <img src="galleri/ZikaOgCharlie.jpg" 
+                                         alt="Zika og Charlie" 
+                                         class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation Arrows -->
+                        <button id="prev-btn" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-stone-800/60 hover:bg-stone-700/80 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button id="next-btn" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-stone-800/60 hover:bg-stone-700/80 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dots -->
+                        <div id="carousel-dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
                     </div>
-                    <p class="text-center mt-4 text-sm text-stone-500 serif italic">Kolo-vibing med Alex💓</p>
+                    
+                    <!-- Caption -->
+                    <p id="carousel-caption" class="text-center mt-4 text-sm text-stone-500 serif italic">Kolo-vibing med Alex💓</p>
+                    
+                    <!-- Swipe Hint -->
+                    <p class="text-center mt-2 text-xs text-stone-400">Swipe ← →</p>
                 </div>
             </div>
         </section>
@@ -211,9 +266,64 @@
             <p class="serif italic text-stone-500">2026</p>
         </footer>
 
+        <!-- Audio Toggle Button -->
+        <button id="audio-toggle" class="fixed bottom-6 right-6 w-12 h-12 bg-stone-800/70 hover:bg-stone-700/80 text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl z-50">
+            <svg id="audio-icon" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+        </button>
+
+        <!-- Background Music -->
+        <audio id="bg-music" src="Suno AI Music(1).m4a" autoplay loop></audio>
+
     </main>
 
     <script>
+        // Supabase config
+        const supabaseUrl = 'https://tzfxaxfhabypkzuzenkw.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6ZnhheGZoYWJ5cGt6dXplbmt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjU3MDUsImV4cCI6MjA4OTAwMTcwNX0.K0EnHKJO2Af6apdF4CX1nxYyEOoC8_DDcR-TTTl5EUY';
+
+        // Simple Supabase REST helpers
+        const supabase = {
+            from(table) {
+                return {
+                    async insert(data) {
+                        const res = await fetch(`${supabaseUrl}/rest/v1/${table}`, {
+                            method: 'POST',
+                            headers: {
+                                'apikey': supabaseKey,
+                                'Authorization': `Bearer ${supabaseKey}`,
+                                'Content-Type': 'application/json',
+                                'Prefer': 'return=minimal'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        return { error: res.ok ? null : await res.json() };
+                    },
+                    async select(query = '*') {
+                        const res = await fetch(`${supabaseUrl}/rest/v1/${table}?select=${query}`, {
+                            headers: {
+                                'apikey': supabaseKey,
+                                'Authorization': `Bearer ${supabaseKey}`
+                            }
+                        });
+                        const data = res.ok ? await res.json() : [];
+                        return { data, error: res.ok ? null : await res.json() };
+                    },
+                    async delete(id) {
+                        const res = await fetch(`${supabaseUrl}/rest/v1/${table}?id=eq.${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'apikey': supabaseKey,
+                                'Authorization': `Bearer ${supabaseKey}`
+                            }
+                        });
+                        return { error: res.ok ? null : await res.json() };
+                    }
+                };
+            }
+        };
+
         // Collection of specific, quirky memories
         const memories = [
             { text: "Kattemassage kl. 4 om morgenen", icon: "💆" },
@@ -250,7 +360,7 @@
         }
 
         // Add flower interaction
-        function addFlower() {
+        async function addFlower() {
             const garden = document.getElementById('flower-garden');
             const flowers = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🌿', '🍀'];
             const flower = document.createElement('span');
@@ -259,6 +369,14 @@
             flower.style.animation = 'fadeIn 0.5s ease-out, bounce 1s infinite';
             
             garden.appendChild(flower);
+            
+            // Save to Supabase
+            try {
+                const { error } = await supabase.from('memorial_entries').insert({ type: 'flower' });
+                if (error) console.error('Supabase error:', error);
+            } catch (e) {
+                console.error('Error:', e);
+            }
             
             // Trigger a random memory when adding flower (sometimes)
             if (Math.random() > 0.7) {
@@ -272,7 +390,8 @@
         }
 
         // Light candle and show memory
-        function lightCandle() {
+        async function lightCandle(e) {
+            const evt = e || window.event;
             const garden = document.getElementById('candle-garden');
             const candle = document.createElement('div');
             candle.className = 'candle text-3xl';
@@ -281,11 +400,19 @@
             
             garden.appendChild(candle);
             
+            // Save to Supabase
+            try {
+                const { error } = await supabase.from('memorial_entries').insert({ type: 'candle' });
+                if (error) console.error('Supabase error:', error);
+            } catch (err) {
+                console.error('Error:', err);
+            }
+            
             // Always show a memory when lighting candle
             setTimeout(() => showRandomMemory(), 400);
             
             // Visual feedback on button
-            const btn = event.target.closest('button');
+            const btn = evt.target.closest('button');
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '✨ Tændt';
             btn.classList.add('bg-amber-100', 'border-amber-600');
@@ -315,8 +442,157 @@
             }, 300);
         }
 
+        // Carousel functionality
+        const captions = [
+            'Kolo-vibing med Alex💓',
+            'Charlie chiller der ud af :)',
+            'Charlie var så flot en kat❤',
+            'Zika og Charlie, de bedste venner'
+        ];
+        
+        let currentSlide = 0;
+        const track = document.getElementById('carousel-track');
+        const caption = document.getElementById('carousel-caption');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'w-2 h-2 rounded-full bg-stone-400/60 hover:bg-stone-400 transition-colors';
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+        const dots = dotsContainer.querySelectorAll('button');
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            caption.textContent = captions[currentSlide];
+            dots.forEach((dot, i) => {
+                dot.className = i === currentSlide 
+                    ? 'w-2 h-2 rounded-full bg-stone-600 transition-colors' 
+                    : 'w-2 h-2 rounded-full bg-stone-400/60 hover:bg-stone-400 transition-colors';
+            });
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        // Arrow buttons
+        document.getElementById('next-btn').addEventListener('click', nextSlide);
+        document.getElementById('prev-btn').addEventListener('click', prevSlide);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+        
+        // Touch swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const carousel = document.getElementById('carousel');
+        
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            const threshold = 50;
+            
+            if (diff > threshold) {
+                nextSlide();
+            } else if (diff < -threshold) {
+                prevSlide();
+            }
+        }
+
         // Initialize
-        createPawPrints();
+        async function init() {
+            createPawPrints();
+            
+            // Check if today is March 14th (Jack's birthday & Zika day)
+            const today = new Date();
+            if (today.getMonth() === 2 && today.getDate() === 14) {
+                document.getElementById('special-day-note').classList.remove('hidden');
+            }
+            
+            // Set up audio toggle
+            const audioToggle = document.getElementById('audio-toggle');
+            const audioIcon = document.getElementById('audio-icon');
+            const bgMusic = document.getElementById('bg-music');
+            
+            audioToggle.addEventListener('click', () => {
+                if (bgMusic.muted) {
+                    bgMusic.muted = false;
+                    audioIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+                } else {
+                    bgMusic.muted = true;
+                    audioIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+                }
+            });
+            
+            // Load existing entries from Supabase
+            try {
+                const { data: entries, error } = await supabase.from('memorial_entries').select('*');
+                if (error) {
+                    console.error('Load error:', error);
+                } else if (entries) {
+                    // Reset if too many candles
+                    const candleCount = entries.filter(e => e.type === 'candle').length;
+                    if (candleCount >= 25) {
+                        for (const entry of entries) {
+                            await supabase.from('memorial_entries').delete(entry.id);
+                        }
+                        entries.length = 0;
+                    } else {
+                        entries.sort((a, b) => a.id - b.id);
+                    
+                        const candleGarden = document.getElementById('candle-garden');
+                        const flowerGarden = document.getElementById('flower-garden');
+                        
+                        entries.forEach(entry => {
+                            if (entry.type === 'candle') {
+                                const candle = document.createElement('div');
+                                candle.className = 'candle text-3xl';
+                                candle.textContent = '🕯️';
+                                candleGarden.appendChild(candle);
+                            } else if (entry.type === 'flower') {
+                                const flowers = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🌿', '🍀'];
+                                const flower = document.createElement('span');
+                                flower.className = 'text-2xl';
+                                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                                flowerGarden.appendChild(flower);
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                console.error('Init error:', e);
+            }
+        }
+        
+        init();
     </script>
 </body>
 </html>
